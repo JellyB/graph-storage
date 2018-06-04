@@ -1,5 +1,0 @@
-[2017-08-24 15:01:42,502]-INFO  [main] (AbstractApplicationContext.java:582)- Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@18e203fb: startup date [Thu Aug 24 15:01:42 CST 2017]; root of context hierarchy
-[2017-08-24 15:01:46,172]-INFO  [main] (JettyEmbeddedServletContainerFactory.java:176)- Server initialized with port: 9013
-[2017-08-24 15:01:48,741]-ERROR [Thread-19] (KafkaConsumerRunner.java:49)- KafkaConsumerRunner is running...
-[2017-08-24 15:01:49,242]-INFO  [main] (WebMvcAutoConfiguration.java:573)- Adding welcome page: class path resource [static/index.html]
-[2017-08-24 15:01:49,795]-INFO  [main] (JettyEmbeddedServletContainer.java:144)- Jetty started on port(s) 9013 (http/1.1)
