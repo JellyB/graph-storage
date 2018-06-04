@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%d]-%-5p [%t] (%file:%line\)- %m%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/graph-storage.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d]-%-5p [%t] (%file:%line\)- %m%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+
+	<appender name="LOGSTASH" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+			<includeMdcKeyName>key1</includeMdcKeyName>
+			<includeMdcKeyName>key2</includeMdcKeyName>
+			<customFields>{"appNOame":"myWebservice","appVersion":"version1"}</customFields>
+			<!--<charset>utf8</charset>-->
+		</encoder>
+
+		<!--<encoder class="net.logstash.logback.encoder.LogstashAccessEncoder">
+			<fieldNames>
+				<fieldsRequestHeaders>@fields.requested_url</fieldsRequestHeaders>
+				<fieldsResponseHeaders>@fields.requested_uri</fieldsResponseHeaders>
+			</fieldNames>
+		</encoder>-->
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logstash/logstash-%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+	</appender>
+
+	<!-- ===print useful info=== -->
+	<logger name="org.springframework.boot.SpringApplication" level="INFO" />
+	<logger name="org.springframework.boot.context.embedded" level="INFO" />
+	<logger name="org.springframework.boot.autoconfigure" level="INFO" />
+
+
+	<root level="${logging.level.root}">
+		<appender-ref ref="LOGSTASH" />
+		<!--${profile.log4j.appender.work.ref}-->
+	</root>
+
+</configuration>
